@@ -1,4 +1,5 @@
 #program sortiranje niza znakova po abecedi
+#autor SV25/21 Danilo Cvijetic
 
 .section .data
 niz: .ascii "jasezovemdanilo\0"
@@ -15,7 +16,6 @@ incl %esi
 movl broj_el, %eax
 subl %esi, %eax
 cmpl %esi, broj_el
-
 jg for2
 je kraj
 for2:
