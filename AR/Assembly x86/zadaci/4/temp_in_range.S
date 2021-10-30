@@ -15,7 +15,6 @@ movb prvi_dan, %al
 movb zadnji_dan, %ah
 jmp check
 movl days(,%esi,4), %eax
-
 check:
 cmpb %al, %ah
 jl error
