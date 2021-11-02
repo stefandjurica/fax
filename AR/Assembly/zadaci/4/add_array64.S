@@ -3,7 +3,6 @@
 .section .data
 arr1: .quad 12,42323,44321,95323233232323233,223,54
 arr2: .quad 555454,66443,32,553,900000000000,223
-rez: .quad 0,0,0,0,0,0
 NUM_EL = 12
 .section .text
 .globl main
