@@ -1,4 +1,4 @@
-string1 = "Kockica"
+string1 = "Slicica"
 string2 = "Kokos"
 str1_len = int((len(string1)-1)/2)
 str2_len = int((len(string2)-1)/2)
