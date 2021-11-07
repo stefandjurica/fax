@@ -1,0 +1,8 @@
+user_name = str(input("Unesite korisnicko ime>>> "))
+password = str(input("Unesite lozinku>>> "))
+file2 = open('users.txt', 'a')
+file2.write(user_name)
+file2.write("|")
+file2.write(password)
+file2.write("\n")
+file2.close()
