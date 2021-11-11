@@ -80,6 +80,9 @@ def draw():
     if error >= 6:
         hangdraw.greska6()
         if ans != 'godmode':
+            for i in range(lenght):
+                guess[i] = 1
+            draw_line()
             print('{:-^40s}'.format('Zao nam je izgubili ste!'))
             exit()
     draw_line()
