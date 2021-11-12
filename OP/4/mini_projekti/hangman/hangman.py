@@ -9,7 +9,6 @@ lenght = len(word)-1
 letters = []
 line = []
 guess = []
-game = 0
 input_let = ''
 error = 0
 for i in range(lenght):
