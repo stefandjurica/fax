@@ -1,0 +1,32 @@
+#program <maska>
+#autor SV25/2021 Cvijetic Danilo 16/11/21
+.section .text
+.globl maska
+maska:
+    pushl %ebp
+    movl %esp, %ebp
+    movl 8(%ebp), %ecx
+    movl 12(%ebp), %edx
+        cmpl $1, %edx
+        jg greska
+        cmpl $0, %edx
+        jl greska
+        cmpl $0, %ecx
+        jl greska
+        cmpl $31, %ecx
+        jg greska
+    movl $1, %eax
+    shll %ecx, %eax
+    cmpl $0, %edx
+    je invert
+    jmp kraj
+
+invert:
+    notl %eax
+    jmp kraj
+greska:
+    movl $0, %eax
+kraj:
+    movl %ebp, %esp
+    popl %ebp
+    ret
