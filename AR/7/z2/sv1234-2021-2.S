@@ -7,7 +7,7 @@ encode:
     movl %esp, %ebp
     pushl %ebx
     pushl %edi
-    pushl %esi
+    pushl %esi       #
     movl 16(%ebp), %ecx   
     movl $0, %esi
     movl $0, %eax
