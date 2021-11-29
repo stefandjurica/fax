@@ -78,7 +78,7 @@ def printWelcomeA():
     print('{:^80s}\n'.format('PRAVILA'))
     print('Asocijacije se igraju tako što se unosi ID polja u formatu SLOVOBROJ, npr. "A1",\n"b2","C3", "d4"... ')
     print('Ukoliko igrač želi da pogađa određenu kolonu to radi u obliku SLOVO odgovor, \nnpr. "C sunce"')
-    print('Ukoliko igrač želi da pogađa konačno rešenje to radi tako što unosi slovo K \npa zatim odgovor, npr "K ftn". MAX BROJ POKUšAJA JE 3 i to je jedan od \
+    print('Ukoliko igrač želi da pogađa konačno rešenje to radi tako što unosi slovo K \npa zatim odgovor, npr "K ftn". MAX BROJ POKUšAJA JE 4 i to je jedan od \
     \nnačina kako korisnik moze prekinuti igru ako ne zna odgovor.')
     print('Nije bitno da li je unos malim ili velikim slovima. Potrebno je paziti da se \nunose slova č,ć,đ,š!')
     print('Ukoliko igrač želi da odustane potrebno je da unese "exit" ')
@@ -389,6 +389,7 @@ def spojnice():
             print('{:-^80s}'.format('-'), end='\n\n')
             print('{0:50s}{1:>30s}'.format(
                 'Čestitam! Nadam se da ste uživali', 'by SV25/2021 Cvijetic Danilo  '))
+            a = input('Pritisnite enter da završtite!')
             break
         print('{:->77s}'.format('BODOVI: '), end='')
         print(str(points), end='\n')
@@ -405,6 +406,7 @@ def spojnice():
             focus = focus + 1
         if focus == 8:
             end = 1
+    return
 
 
 # checking if game is starting
