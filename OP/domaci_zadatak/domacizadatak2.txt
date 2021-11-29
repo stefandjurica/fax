@@ -31,4 +31,4 @@ latinična slova, neophodno je to naglasiti prilikom učitavanja dodatnim parame
 umesto dosadašnjeg:
 fajl = open("file.txt", "r")
 dodajemo i parametar 'encoding' pa treba pisati:
-fajl = open("file.txt", "r", encoding="utf-8") 
+fajl = open("file.txt", "r", encoding="utf-8")
