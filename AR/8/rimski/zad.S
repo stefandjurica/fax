@@ -30,8 +30,7 @@ for2:
     movb %dl, (%esi)
     decl %ecx                           #smanjuje se velicina preostalog buffera
     incl %esi                           #inc pokazivaca na niz
-    subl dec(,%edi,4), %eax
-    movb rom2(,%edi,1), %dh
+    subl dec(,%edi,4), %eax             #oduzima se zapisani broj od ulaznog
     cmpb $' ', rom2(,%edi,1)            #provjera da li rimski broj ima zapis u dva char-a
     je for2
     movb rom2(,%edi,1), %dl
