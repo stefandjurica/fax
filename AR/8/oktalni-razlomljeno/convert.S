@@ -36,7 +36,7 @@ for:
     cmpl $0, %eax
     jne for
 end:
-    movb $0, (%esi)      #buffer overflow ako stavimo \n na kraj
+    movb $0, (%esi)      #dodaje se \n na kraj
     movl $0, %eax
     jmp kraj
 greska:
