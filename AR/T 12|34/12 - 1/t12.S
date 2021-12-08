@@ -1,4 +1,4 @@
-#program <t12>
+#program <t12  prebrojavanje pluseva i minusa>
 #autor SV25/2021 Cvijetic Danilo 08/12/21
 .section .data
 string1: .fill 20,1,0
