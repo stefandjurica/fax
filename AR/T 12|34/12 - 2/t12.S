@@ -2,7 +2,7 @@
 #autor SV25/2021 Cvijetic Danilo 08/12/21
 .section .data
 #string: .fill 20,1,0
-string: .ascii "danilo1\0"
+string: .ascii "danilo1"
 poruka1: .ascii "Unesite tekst: \0"
 poruka1_len = . - poruka1
 poruka2: .ascii "Promenjen string: \0"
@@ -41,7 +41,6 @@ end:
     movl $poruka2, %ecx
     movl $poruka2_len, %edx
     int $0x80
-
     movl $4, %eax
     movl $1, %ebx
     movl $string, %ecx

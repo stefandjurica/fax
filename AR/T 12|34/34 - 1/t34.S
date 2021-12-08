@@ -1,6 +1,6 @@
 #potprogram od t12
 #autor Cvijetic Danilo SV25/2021
-#void potprogram(unsigned char *s1, unsigned char *s2, char *r);
+#void potprogram(unsigned char *s1, unsigned char *s2, char *r);        prebrojavanje pluseva i minusa
 .section .text
 .globl potprogram
 potprogram:
