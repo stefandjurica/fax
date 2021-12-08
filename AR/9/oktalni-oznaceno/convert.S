@@ -39,7 +39,13 @@ for:
     addl %ebx, %eax
     jo greska2
     incl %esi
+    cmpl $0, %eax
+    jl checkovf
     jmp for
+checkovf:
+    cmpl $-1, -8(%ebp)              #fix za overflow koji jo komanda ne moze regitrovati 
+    je for                          #-2147483648 se javlja ako je granicni ulaz pozitivan
+    jne greska2
 check:
     cmpl %esi, 8(%ebp)   #ako nije vrsena iteracija -> string prazan
     je greska
