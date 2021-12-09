@@ -16,19 +16,21 @@ shft:
     cmpl %ebx, 16(%ebp)
     jle end
     movb (%edi,%ebx,1), %cl
+   # subb $'0', %cl
+    
     testl $1, %ebx
     jnz shiftujr
     jz shiftujl
 shiftujr:
-    shrl $1, 4(%esi,%ebx,4)
-    rcrl $1, (%esi,%ebx,4)
+    shrl $1, 4(%esi,%ebx,8)
+    rcrl $1, (%esi,%ebx,8)
     decb %cl
     cmpb $0, %cl
     je next
     jmp shiftujr
 shiftujl:
-    shll $1, (%esi,%ebx,4)
-    rcll $1, 4(%esi,%ebx,4)
+    shll $1, (%esi,%ebx,8)
+    rcll $1, 4(%esi,%ebx,8)
     decb %cl
     cmpb $0, %cl
     je next

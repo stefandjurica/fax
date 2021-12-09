@@ -15,7 +15,7 @@ int main() {
   for (int i = 0; i < n; i++) {
     scanf("%lld", &A[i]);
   }
-  printf("Unesite elemente niza B: ");
+  printf("Unesite elemente niza B: \n");
   for (int i = 0; i < n; i++) {
     scanf("%hhu", &B[i]);
   }
