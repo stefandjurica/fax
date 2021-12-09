@@ -15,8 +15,7 @@ shiftujDvostruko:
 shft:
     cmpl %ebx, 16(%ebp)
     jle end
-    movb (%edi,%ebx,4), %cl
-   # subb $'0', %cl 
+    movb (%edi,%ebx,1), %cl
     testl $1, %ebx
     jnz shiftujr
     jz shiftujl

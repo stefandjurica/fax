@@ -2,7 +2,7 @@
 
 unsigned int RUNPP_REG_ERR = 0;
 
-void shiftujDvostruko(unsigned long long *a, unsigned int *b, unsigned n);
+void shiftujDvostruko(unsigned long long *a, unsigned char *b, unsigned n);
 
 int main() {
 
@@ -10,14 +10,14 @@ int main() {
   printf("Unesite N: ");
   scanf("%u", &n);
   unsigned long long A[n];
-  unsigned int B[n];
+  unsigned char B[n];
   printf("Unesite elemente niza A: \n");
   for (int i = 0; i < n; i++) {
     scanf("%lld", &A[i]);
   }
   printf("Unesite elemente niza B: ");
   for (int i = 0; i < n; i++) {
-    scanf("%ud", &B[i]);
+    scanf("%hhu", &B[i]);
   }
   shiftujDvostruko(A, B, n);
   printf("Elementi niza su: \n");
