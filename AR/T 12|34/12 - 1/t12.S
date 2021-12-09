@@ -27,7 +27,7 @@ main:
     movl $4, %eax
     movl $1, %ebx
     movl $poruka2, %ecx
-    movl $poruka2_len, %edx
+    movl $poruka2_len, %edx             #komande za stdin i stdout
     int $0x80
 
     movl $3, %eax
@@ -45,7 +45,7 @@ count:
     incl %esi
     cmpb $0, (%esi)
     je count2
-    cmpb $'+',(%esi)
+    cmpb $'+',(%esi)        #prebrojavanje pluseva
     jne count
     incl %ecx 
     jmp count
@@ -54,13 +54,13 @@ count2:
     cmpb $0, (%edi)
     je compare
     cmpb $'-', (%edi)
-    jne count2
+    jne count2              #prebrojavanje minusa
     incl %edx
     jmp count2
 compare:
     cmpl %ecx, %edx
     jl set1
-    jg set2
+    jg set2                 #poredjenje i postavljanje izlazne varijable R
     movl $3, R
     jmp kraj
 set1:

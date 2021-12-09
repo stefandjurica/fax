@@ -20,18 +20,18 @@ main:
     movl $1, %ebx
     movl $string, %ecx
     movl $20, %edx
-    int $0x80
+    int $0x80                       #unos stringa
     movl $string, %esi
     movl %eax, %edi
 for:
 
-    movb (%esi), %cl
-    cmpb $0, %cl
+    movb (%esi), %cl            #iteracija po dva susjedna karaktera sve dok jedan od njih nije 0
+    cmpb $0, %cl                #time se postize da neparan karakter ostane nepromjenjen
     je end
     movb 1(%esi), %dl
     cmpb $0, %dl
     je end
-    movb %cl, 1(%esi)
+    movb %cl, 1(%esi)           #zamjena karaktera
     movb %dl, (%esi)
     addl $2, %esi
     jmp for
@@ -39,7 +39,7 @@ end:
     movl $4, %eax
     movl $1, %ebx
     movl $poruka2, %ecx
-    movl $poruka2_len, %edx
+    movl $poruka2_len, %edx         #ispis
     int $0x80
     movl $4, %eax
     movl $1, %ebx

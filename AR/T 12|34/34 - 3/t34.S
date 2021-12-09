@@ -9,34 +9,32 @@ shiftujDvostruko:
     pushl %esi
     pushl %edi
     pushl %ebx
-    movl 8(%ebp), %esi
-    movl 12(%ebp), %edi
-    movl $0, %ebx
+    movl 8(%ebp), %esi                  #pokazivac na niz 
+    movl 12(%ebp), %edi                 #pokazivac na niz b
+    movl $0, %ebx                       #brojac
 shft:
-    cmpl %ebx, 16(%ebp)
+    cmpl %ebx, 16(%ebp)                 #kraj petlje
     jle end
-    movb (%edi,%ebx,1), %cl
-   # subb $'0', %cl
-    
+    movb (%edi,%ebx,1), %cl             #broj shiftovanja
     testl $1, %ebx
-    jnz shiftujr
-    jz shiftujl
+    jnz shiftujr                        #neparni    
+    jz shiftujl                         #parni
 shiftujr:
-    shrl $1, 4(%esi,%ebx,8)
+    shrl $1, 4(%esi,%ebx,8)         #shift desno 64bit
     rcrl $1, (%esi,%ebx,8)
-    decb %cl
+    decb %cl                        #broj shift -1
     cmpb $0, %cl
     je next
     jmp shiftujr
 shiftujl:
-    shll $1, (%esi,%ebx,8)
+    shll $1, (%esi,%ebx,8)          #shift lijevo 64bit
     rcll $1, 4(%esi,%ebx,8)
     decb %cl
     cmpb $0, %cl
     je next
     jmp shiftujl
 next:
-    incl %ebx
+    incl %ebx               #sledeci broj iz niza a
     jmp shft
 end:
     popl %ebx

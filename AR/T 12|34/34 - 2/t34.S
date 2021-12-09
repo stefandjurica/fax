@@ -16,38 +16,38 @@ SaberiMnozi:
     movl $0, %ebx       #brojac
 
 for:
-    cmpl %ebx, 8(%ebp)
+    cmpl %ebx, 8(%ebp)              #petlja za parne brojeve krece od nule, increment je 2
     jle next
-    movw (%esi,%ebx,2), %ax
-    mulw (%edi,%ebx,2)
+    movw (%esi,%ebx,2), %ax             
+    mulw (%edi,%ebx,2)              #mnozenje drugog sa prvim
     jc greska1
-    movw %ax, (%ecx, %ebx,2)
+    movw %ax, (%ecx, %ebx,2)        #rez u treci niz
     addl $2, %ebx
     jmp for
 next:
-    movl $1, %ebx
+    movl $1, %ebx               #init petlje za neparne
 for2:
     cmpl %ebx, 8(%ebp)
     jle end
     movw (%esi, %ebx,2), %ax
     movw %ax, (%ecx,%ebx,2)
     movw (%edi, %ebx,2), %ax
-    addw %ax,(%ecx,%ebx,2)
-    jc greska2
+    addw %ax,(%ecx,%ebx,2)          #sabiranje dva broja u treci niz
+    jc greska2                      #carry daje gresu i 11111 se stavlja u rez
     addl $2, %ebx
     jmp for2
 greska1:
     movw $11111, (%ecx,%ebx,2)
-    addl $2, %ebx
+    addl $2, %ebx               #11111
     incl -4(%ebp)
-    jmp for
+    jmp for                     #nastavlja se iteracija
 greska2:
     movw $11111, (%ecx,%ebx,2)
     addl $2, %ebx
     incl -4(%ebp)
     jmp for2
 end:
-    movl -4(%ebp),%eax
+    movl -4(%ebp),%eax              #broj gresaka
     popl %ebx
     popl %edi
     popl %esi
