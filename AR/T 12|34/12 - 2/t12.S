@@ -1,7 +1,7 @@
 #program <zamjena dva susjedna karaktera u stringu>
 #autor SV25/2021 Cvijetic Danilo 08/12/21
 .section .data
-string: .fill 20,1,0
+string: .fill 21,1,0
 #string: .ascii "danilo1"
 poruka1: .ascii "Unesite tekst: \0"
 poruka1_len = . - poruka1
