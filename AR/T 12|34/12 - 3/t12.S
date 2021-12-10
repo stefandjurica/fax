@@ -15,7 +15,7 @@ main:
 
     movl $3, %eax
     movl $1, %ebx
-    movl $string, %ecx
+    movl $string, %ecx          #unos stringa
     movl $40, %edx
     int $0x80
     movl $string, %esi
@@ -25,7 +25,7 @@ count:
     je kraj
     cmpb $'a', (%esi)
     je samogl
-    cmpb $'A', (%esi)
+    cmpb $'A', (%esi)           #broje se i lCase i upCase
     je samogl
     cmpb $'e', (%esi)
     je samogl
@@ -46,7 +46,7 @@ count:
     incl %esi
     jmp count
 samogl:
-    incl %ebx
+    incl %ebx               #povecava se brojac samoglasnika
     incl %esi
     jmp count
 kraj:
