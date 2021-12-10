@@ -24,14 +24,13 @@ main:
     movl $string, %esi
     movl %eax, %edi
 for:
-
     movb (%esi), %cl            #iteracija po dva susjedna karaktera sve dok jedan od njih nije 0
     cmpb $0, %cl                #time se postize da neparan karakter ostane nepromjenjen
     je end
     movb 1(%esi), %dl
     cmpb $0, %dl
     je end
-    cmpb $10, %dl
+    cmpb $10, %dl             #ukoliko je poslednji karakter \n prekida se petlja da ne bi doslo do
     je end
     movb %cl, 1(%esi)           #zamjena karaktera
     movb %dl, (%esi)
