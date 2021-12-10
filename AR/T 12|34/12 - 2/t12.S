@@ -1,8 +1,8 @@
 #program <zamjena dva susjedna karaktera u stringu>
 #autor SV25/2021 Cvijetic Danilo 08/12/21
 .section .data
-#string: .fill 20,1,0
-string: .ascii "danilo1"
+string: .fill 20,1,0
+#string: .ascii "danilo1"
 poruka1: .ascii "Unesite tekst: \0"
 poruka1_len = . - poruka1
 poruka2: .ascii "Promenjen string: \0"
@@ -30,6 +30,8 @@ for:
     je end
     movb 1(%esi), %dl
     cmpb $0, %dl
+    je end
+    cmpb $10, %dl
     je end
     movb %cl, 1(%esi)           #zamjena karaktera
     movb %dl, (%esi)

@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 
 unsigned int RUNPP_REG_ERR = 0;
@@ -9,10 +10,12 @@ int main() {
   unsigned char string1[20];
   unsigned char string2[20];
   char R;
+  char flushc;
   unsigned int g;
   printf("Unesite S1: ");
   scanf("%20[^\n]s", string1);
-
+  while ((flushc = getchar()) != '\n' && flushc != EOF)
+    ;
   printf("Unesite S2: ");
   scanf("%20[^\n]s", string2);
 
