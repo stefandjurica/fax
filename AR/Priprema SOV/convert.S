@@ -31,6 +31,7 @@ cnvrtdec:
     subb $48, %bl
     mull -4(%ebp)
     addb %bl, %al
+    jc error
     incl %esi
     jmp cnvrtdec
 cnvrthexi:
@@ -56,6 +57,7 @@ cnvrthex09:
     subb $'0', %bl
     mull -8(%ebp)
     addb %bl, %al
+    jc error
     incl %esi
     jmp cnvrthex
 cnvrthexlow:
@@ -63,6 +65,7 @@ cnvrthexlow:
     subb $87, %bl
     mull -8(%ebp)
     addb %bl, %al
+    jc error
     incl %esi
     jmp cnvrthex
 cnvrthexup:
@@ -70,6 +73,7 @@ cnvrthexup:
     subb $55, %bl
     mull -8(%ebp)
     addb %bl, %al
+    jc error
     incl %esi
     jmp cnvrthex
 error:

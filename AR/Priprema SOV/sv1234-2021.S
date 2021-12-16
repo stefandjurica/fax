@@ -11,14 +11,16 @@
     err2_len = . - err2
     newline: .ascii "\n\0"
     newline_len = . - newline
-    #input: .fill 100,1,0
-    input: .ascii "123 ^ 0xf2 < 0X12\0"
+    input: .fill 100,1,0
+ #   input: .ascii "255 < 0xfe < 256 < 0xFB < 247\0"
     input_len = 100
     substring: .fill 10,1,0
-    values: .fill 25, 1, 0
-    operators: .fill 25, 1, 0
+    values: .fill 30, 1, 0
+    operators: .fill 30, 1, 0
     length: .long 0
     end: .byte 0
+    output: .fill 15, 1,0
+    temp: .long 0
 .section .text
 .globl main
 main:
@@ -33,8 +35,10 @@ main:
     movl $input, %ecx
     movl $input_len, %edx
     int $0x80
-    movl %eax, length
+    movl %eax, length   
+    decl %eax
     movl $input, %esi           #baza input stringa
+    movb $0, input(, %eax, 1)
    # movl $substring, %edi
     movl $0, %ebx  #ebx brojac u operators, ecx brojac u values    
     movl $0, %ecx  
@@ -50,7 +54,12 @@ separate:
     cmpb $'>', (%esi)
     je setop3
     movl $substring, %edi
+    movl %ebx, temp
+    addl $1, temp
+    cmpl %ecx, temp
+    je error2
     jmp sep_part
+
 sep_part:
     cmpb $0, (%esi)
     je endconvert
@@ -79,6 +88,7 @@ setop3:
 endconvert:
     movl $1, end
 convert:
+    movb $0, (%edi)
     pushl $substring
     call convert_func
     addl $4, %esp
@@ -97,7 +107,7 @@ next:
     incl %edi
 next2:
     cmpl %esi, %ebx
-    je kraj
+    je cnvrtoct
     movb values(,%edi,1), %cl
     movb operators(,%ebx,1), %dl
     cmpb $1, %dl
@@ -117,15 +127,50 @@ rotateleft:
     incl %ebx
     jmp next2
 rotateright:
-    rolb %cl, %ch
+    rorb %cl, %ch
     incl %edi
     incl %ebx
     jmp next2
-#### rezultatt je u cl i treba ga u konvertovati u oktalni string 
+#### rezultatt je u ch i treba ga u konvertovati u oktalni string 
 error1:
+    movl $4, %eax
     movl $1, %ebx
-kraj:
+    movl $err1, %ecx
+    movl $err1_len, %edx
+    int $0x80
+    movl $1, %ebx
+    jmp kraj2
+error2:
+    movl $4, %eax
+    movl $1, %ebx
+    movl $err2, %ecx
+    movl $err2_len, %edx
+    int $0x80
+    movl $1, %ebx
+    jmp kraj2
+cnvrtoct:
+    xorl %eax, %eax
+    movb %ch, %al
+    pushl $output
+    pushl %eax
+    call convert_oct
+    addl $8, %esp
+    movl %eax, %esi
+print:
+    movl $4, %eax
+    movl $1, %ebx
+    movl $prompt2, %ecx
+    movl $prompt2_len, %edx
+    int $0x80
 
-movl $1, %eax
-movl $0, %ebx
-int $0x80
+    movl $4, %eax
+    movl $1, %ebx
+    movl $output, %ecx
+    movl %esi, %edx
+    int $0x80
+kraj:
+    movl $0, %ebx
+    jmp kraj2
+kraj2:
+    movl $1, %eax
+    int $0x80
