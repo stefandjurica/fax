@@ -17,6 +17,7 @@ check:
     jne greska1
     cmpb $'.', 1(%esi)
     jne greska1
+    incl %esi
     movl %esi, -12(%ebp)
     incl -12(%ebp)
 
